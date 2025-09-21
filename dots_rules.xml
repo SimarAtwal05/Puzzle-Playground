@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleML xmlns="http://www.ruleml.org/0.91/xsd">
+    <rulebase>
+        <rule id="complete-box">
+            <if>
+                <Atom>
+                    <op:exists/>
+                    <Var>closing_move</Var>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>closing_move</Var>
+                </Atom>
+            </then>
+        </rule>
+
+        <rule id="prevent-box">
+            <if>
+                <Atom>
+                    <op:exists/>
+                    <Var>preventing_move</Var>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>preventing_move</Var>
+                </Atom>
+            </then>
+        </rule>
+        
+        <rule id="safe-move">
+            <if>
+                <Atom>
+                    <op:exists/>
+                    <Var>safe_move</Var>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>safe_move</Var>
+                </Atom>
+            </then>
+        </rule>
+
+        <rule id="random">
+            <if>
+                <Atom>
+                    <op:EQ/>
+                    <Var>move</Var>
+                    <Data>null</Data>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Data>random_empty_spot</Data>
+                </Atom>
+            </then>
+        </rule>
+    </rulebase>
+</RuleML>

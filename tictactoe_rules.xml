@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleML xmlns="http://www.ruleml.org/0.91/xsd">
+    <rulebase>
+        <rule id="win">
+            <if>
+                <And>
+                    <op:and/>
+                    <Atom>
+                        <op:EQ/>
+                        <Var>turn</Var>
+                        <Data>O</Data>
+                    </Atom>
+                    <Atom>
+                        <op:exists/>
+                        <Var>winning_move</Var>
+                    </Atom>
+                </And>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>winning_move</Var>
+                </Atom>
+            </then>
+        </rule>
+
+        <rule id="block">
+            <if>
+                <And>
+                    <op:and/>
+                    <Atom>
+                        <op:EQ/>
+                        <Var>turn</Var>
+                        <Data>X</Data>
+                    </Atom>
+                    <Atom>
+                        <op:exists/>
+                        <Var>blocking_move</Var>
+                    </Atom>
+                </And>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>blocking_move</Var>
+                </Atom>
+            </then>
+        </rule>
+
+        <rule id="center">
+            <if>
+                <Atom>
+                    <op:EQ/>
+                    <Var>cells[4]</Var>
+                    <Data>null</Data>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Data>4</Data>
+                </Atom>
+            </then>
+        </rule>
+        
+        <rule id="corner">
+            <if>
+                <Atom>
+                    <op:exists/>
+                    <Var>corner_move</Var>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>corner_move</Var>
+                </Atom>
+            </then>
+        </rule>
+
+        <rule id="side">
+            <if>
+                <Atom>
+                    <op:exists/>
+                    <Var>side_move</Var>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Var>side_move</Var>
+                </Atom>
+            </then>
+        </rule>
+        
+        <rule id="random">
+            <if>
+                <Atom>
+                    <op:EQ/>
+                    <Var>move</Var>
+                    <Data>null</Data>
+                </Atom>
+            </if>
+            <then>
+                <Atom>
+                    <op:assign/>
+                    <Var>move</Var>
+                    <Data>random_empty_spot</Data>
+                </Atom>
+            </then>
+        </rule>
+    </rulebase>
+</RuleML>
